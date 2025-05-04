@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchList from "./SearchList";
 import ErrorPage from "./ErrorPage";
@@ -64,19 +64,21 @@ export default function ResultPage() {
     })
 
     return (
-        <div className="w-full h-screen flex flex-col overflow-y-scroll scroll-smooth overflow-x-clip md:p-5 items-center">
-            {loading ? (
-                <div className="flex justify-center items-center w-full h-full">
-                    <span className="text-lg">Loading...</span>
-                </div>
-            ) : (
-                <>
-                    <div className="w-auto h-auto mt-15 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-5 gap-2">
-                        {theMulti}
+        <Suspense fallback={<div className="flex justify-center items-center w-full h-full"><span className="text-lg">Loading...</span></div>}>
+            <div className="w-full h-screen flex flex-col overflow-y-scroll scroll-smooth overflow-x-clip md:p-5 items-center">
+                {loading ? (
+                    <div className="flex justify-center items-center w-full h-full">
+                        <span className="text-lg">Loading...</span>
                     </div>
-                    {theData === null && <ErrorPage />}
-                </>
-            )}
-        </div>
+                ) : (
+                    <>
+                        <div className="w-auto h-auto mt-15 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-5 gap-2">
+                            {theMulti}
+                        </div>
+                        {theData === null && <ErrorPage />}
+                    </>
+                )}
+            </div>
+        </Suspense>
     )
 }
