@@ -50,15 +50,6 @@ export default function ResultPage() {
         }
     }, [searchParams])
 
-    React.useEffect(() => {
-        let timeout: NodeJS.Timeout;
-        if (theData === null) {
-            timeout = setTimeout(() => setShowError(true), 1500);
-        } else {
-            setShowError(false);
-        }
-        return () => clearTimeout(timeout);
-    }, [theData])
     const theMulti = theData?.filter((item: Movie) => item.poster_path).map((item: Movie) => {
         const theStyle = {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path})`,

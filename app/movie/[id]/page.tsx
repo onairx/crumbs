@@ -27,7 +27,6 @@ interface Movie {
     number_of_episodes?: number;
     production_companies?: { name: string; logo_path: string }[];
     overview?: string;
-    [key: string]: any;
 }
 
 export default function Page() {
@@ -54,7 +53,7 @@ export default function Page() {
             console.log(error)
         }
 
-    }, [paramsId.id])
+    }, [paramsId.id, searchParams])
 
     // React.useEffect(() => {
     //     console.log(similarMovies)
@@ -179,7 +178,7 @@ export default function Page() {
                                                     <div>
                                                         <div className="flex gap-2 flex-wrap w-auto h-auto ">
                                                             {
-                                                                selectedMovie?.genres.map((item: any, index: number) => {
+                                                                selectedMovie?.genres.map((item: { name: string }, index: number) => {
                                                                     return (
                                                                         <p key={index}
                                                                             className="text-[#f7f7f7] text-md lg:px-10 lg:py-2 border 
@@ -210,7 +209,7 @@ export default function Page() {
                                             {
                                                 selectedMovie?.production_companies &&
                                                 <div className="flex gap-5 w-auto h-auto">
-                                                    {selectedMovie?.production_companies.map((item: any, index: number) => {
+                                                    {selectedMovie?.production_companies.map((item: { name: string; logo_path: string }, index: number) => {
                                                         return (
                                                             <div key={index} className="bg-[#f7f7f7] px-5 py-2">
 
