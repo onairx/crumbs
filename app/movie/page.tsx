@@ -28,7 +28,7 @@ function ResultPageContent() {
         setLoading(true)
         try {
             async function fetchData() {
-                const res = await fetch(`https://api.themoviedb.org/3/search/multi?page=1&query=${searchParams}&api_key=${TMDB_KEY}`)
+                const res = await fetch(`https://api.themoviedb.org/3/search/multi?page=1&query=${searchParams}&api_key=${process.env.TMDB_KEY}`)
                 const data = await res.json()
                 if (data.results.length > 0) {
                     setTheData(data.results)
