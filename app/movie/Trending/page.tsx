@@ -14,7 +14,7 @@ export default function Trending() {
     React.useEffect(() => {
         try {
             const fetchTrending = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}`)
+                const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
                 const data = await res.json()
                 setTrending(data.results)
             }
