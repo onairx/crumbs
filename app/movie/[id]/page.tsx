@@ -158,7 +158,7 @@ export default function Page() {
                                         <a href={selectedMovie?.homepage} className="w-full h-14 cursor-pointer">
                                             <div className="bg-[#191919] text-[#f7f7f7] w-full h-full cursor-pointer border border-[#2D2D2D]">
                                                 <button className="flex justify-center items-center gap-2 lg:text-xl md:text-md text-sm w-full h-full">
-                                                    Home Page
+                                                    Official Website
                                                     <Image src={Arrow} alt="arrow" className="lg:w-3 lg:h-3 md:w-2 md:h-2 w-auto h-auto" />
                                                 </button>
                                             </div>
