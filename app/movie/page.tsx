@@ -16,18 +16,15 @@ interface Movie {
     poster_path: string;
     backdrop_path?: string;
     media_type?: string;
-    [key: string]: any;
 }
 
 export default function ResultPage() {
     const searchParams = useSearchParams().get("query");
     const [theData, setTheData] = React.useState<Movie[] | null>(null)
-    const [showError, setShowError] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         setTheData(null)
-        setShowError(false)
         setLoading(true)
         try {
             async function fetchData() {

@@ -1,5 +1,4 @@
 'use client'
-import React, { useEffect } from "react"
 import Main from "./components/page"
 
 export default function Home() {

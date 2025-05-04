@@ -7,7 +7,6 @@ interface TrendingItem {
     poster_path: string;
     backdrop_path?: string;
     media_type?: string;
-    [key: string]: any;
 }
 
 export default function Trending() {
@@ -39,7 +38,7 @@ export default function Trending() {
                 key={item.id}
                 item={{
                     ...item,
-                    vote_average: item.vote_average || 0
+                    vote_average: 0
                 }}
                 theStyle={theStyle}
             />
