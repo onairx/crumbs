@@ -4,9 +4,24 @@ import { useSearchParams } from "next/navigation";
 import SearchList from "./SearchList";
 import ErrorPage from "./ErrorPage";
 
+interface Movie {
+    id: number;
+    name?: string;
+    title?: string;
+    original_name?: string;
+    first_air_date?: string;
+    release_date?: string;
+    origin_country?: string[];
+    vote_average: number;
+    poster_path: string;
+    backdrop_path?: string;
+    media_type?: string;
+    [key: string]: any;
+}
+
 export default function ResultPage() {
     const searchParams = useSearchParams().get("query");
-    const [theData, setTheData] = React.useState<any>(null)
+    const [theData, setTheData] = React.useState<Movie[] | null>(null)
     const [showError, setShowError] = React.useState(false);
     const [loading, setLoading] = React.useState(true);
 
@@ -44,7 +59,7 @@ export default function ResultPage() {
         }
         return () => clearTimeout(timeout);
     }, [theData])
-    const theMulti = theData?.filter((item: any) => item.poster_path).map((item: any) => {
+    const theMulti = theData?.filter((item: Movie) => item.poster_path).map((item: Movie) => {
         const theStyle = {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path})`,
             backgroundSize: "cover",

@@ -5,11 +5,36 @@ import Arrow from "@/public/assets/Arrow2.svg"
 import SearchList from "../SearchList";
 import { useParams, useSearchParams } from "next/navigation";
 
+interface Movie {
+    id: number;
+    name?: string;
+    title?: string;
+    original_name?: string;
+    release_date?: string;
+    first_air_date?: string;
+    tagline?: string;
+    networks?: { name: string }[];
+    origin_country?: string[];
+    status?: string;
+    vote_average: number;
+    vote_count: number;
+    homepage?: string;
+    backdrop_path?: string;
+    poster_path?: string;
+    genres?: { name: string }[];
+    type?: string;
+    number_of_seasons?: number;
+    number_of_episodes?: number;
+    production_companies?: { name: string; logo_path: string }[];
+    overview?: string;
+    [key: string]: any;
+}
+
 export default function Page() {
     const searchParams = useSearchParams().get("media_type");
     const paramsId = useParams()
-    const [selectedMovie, setSelectedMovie] = React.useState<any>(null);
-    const [similarMovies, setSimilarMovies] = React.useState<any>(null)
+    const [selectedMovie, setSelectedMovie] = React.useState<Movie | null>(null);
+    const [similarMovies, setSimilarMovies] = React.useState<Movie[] | null>(null)
 
     React.useEffect(() => {
         try {
@@ -35,7 +60,7 @@ export default function Page() {
     //     console.log(similarMovies)
     // }, [selectedMovie])
 
-    const similarMoviesCard = similarMovies && similarMovies.map((item: any) => {
+    const similarMoviesCard = similarMovies && similarMovies.map((item: Movie) => {
         const theStyle = {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path})`,
             backgroundSize: "cover",
@@ -45,7 +70,10 @@ export default function Page() {
         return (
             <SearchList
                 key={item.id}
-                item={item}
+                item={{
+                    ...item,
+                    poster_path: item.poster_path || ''
+                }}
                 theStyle={theStyle}
             />
         )
@@ -65,7 +93,7 @@ export default function Page() {
                 <div className="w-full md:h-[100vh] h-full overflow-clip">
                     <div className="flex w-full h-full flex-col 
                         md:[mask-image:linear-gradient(to_bottom,transparent,#0a0a0a_15%,#0a0a0a_100%,transparent)]">
-                        <div className="w-full lg:h-[40%] md:h-[30%] h-[20%] flex justify-start items-center mt-16" style={theStyle}>
+                        <div className="w-full lg:h-[40%] md:h-[30%] h-[20%] flex justify-start items-center mt-16" style={theStyle || undefined}>
                             <div className="w-[76%] md:w-[50%] h-full flex justify-center items-center
                                 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0ac2] to-[#0a0a0a5a] backdrop-blur-xl">
                                 <img
@@ -79,7 +107,7 @@ export default function Page() {
                         </div>
                         <div className="w-auto h-auto">
                             <div className="w-full lg:h-[55vh] md:h-[65vh] h-full md:flex md:flex-row flex-col justify-start items-center md:overflow-clip ">
-                                <div className="lg:w-[55.4%] md:w-[25%] w-full h-[55vh] md:h-full flex justify-center items-center">
+                                <div className="lg:w-[57.3%] lg:max-w-[57.3%] md:w-[25%] w-full h-[55vh] md:h-full flex justify-center items-center">
                                     <div className="w-[90%] h-[90%] flex justify-between items-start flex-col">
                                         <div className="w-full h-full flex flex-col gap-2">
                                             <div>
@@ -138,7 +166,7 @@ export default function Page() {
                                         </a>
                                     </div>
                                 </div>
-                                <div className="lg:w-full md:w-[30%] w-full md:h-full lg:h-full h-auto flex justify-center items-center md:py-0 p-4 md:border md:border-[#2D2D2D]">
+                                <div className="lg:w-full md:w-[30%] w-full md:h-full lg:h-full h-auto flex justify-center items-center md:py-0 p-4 md:border-x md:border-[#2D2D2D]">
                                     <div className="md:w-[95%] md:h-[90%] flex justify-between gap-0 items-start flex-col overflow-clip">
                                         <div className="flex justify-between gap-3 items-start flex-col">
                                             <div>

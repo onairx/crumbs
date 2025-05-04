@@ -12,7 +12,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 export default function SearchBarInput() {
     const router = useRouter();
     const [theSearch, setTheSearch] = React.useState("")
-    function handleClick(e: any) {
+    function handleClick(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         if (theSearch.trim()) {
             router.push(`/movie?query=${theSearch}`)

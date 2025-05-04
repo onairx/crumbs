@@ -2,8 +2,16 @@
 import React from 'react';
 import SearchList from '../SearchList';
 
+interface TrendingItem {
+    id: number;
+    poster_path: string;
+    backdrop_path?: string;
+    media_type?: string;
+    [key: string]: any;
+}
+
 export default function Trending() {
-    const [trending, setTrending] = React.useState<any>(null)
+    const [trending, setTrending] = React.useState<TrendingItem[] | null>(null)
     React.useEffect(() => {
         try {
             const fetchTrending = async () => {
@@ -19,7 +27,7 @@ export default function Trending() {
 
 
 
-    const trendingCard = trending?.filter((item: any) => item.poster_path).map((item: any) => {
+    const trendingCard = trending?.filter((item: TrendingItem) => item.poster_path).map((item: TrendingItem) => {
         const theStyle = {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path})`,
             backgroundSize: "cover",
@@ -29,7 +37,10 @@ export default function Trending() {
         return (
             <SearchList
                 key={item.id}
-                item={item}
+                item={{
+                    ...item,
+                    vote_average: item.vote_average || 0
+                }}
                 theStyle={theStyle}
             />
         )

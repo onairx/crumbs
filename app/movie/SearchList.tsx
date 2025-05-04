@@ -3,7 +3,23 @@ import React from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import Link from "next/link";
 
-export default function SearchList({ item, theStyle }: any) {
+interface SearchListProps {
+    item: {
+        id: number;
+        name?: string;
+        title?: string;
+        original_name?: string;
+        first_air_date?: string;
+        release_date?: string;
+        origin_country?: string[];
+        vote_average: number;
+        poster_path: string;
+        media_type?: string;
+    };
+    theStyle: React.CSSProperties;
+}
+
+export default function SearchList({ item, theStyle }: SearchListProps) {
     return (
         <Link
             key={item.id}
