@@ -20,7 +20,9 @@ export default function Trending() {
             }
             fetchTrending()
         } catch (error) {
-            error ? console.log("Something went wrong") : ""
+            if (error) {
+                console.log("Something went wrong");
+            }
         }
     })
 

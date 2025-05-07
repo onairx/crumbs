@@ -40,10 +40,10 @@ function ResultPageContent() {
                 setLoading(false)
             }
             fetchData()
-        } catch (err) {
+        } catch (error) {
             setTheData(null)
             setLoading(false)
-            if (err) {
+            if (error) {
                 console.log("Something went wrong");
             }
         }
