@@ -43,7 +43,9 @@ function ResultPageContent() {
         } catch (err) {
             setTheData(null)
             setLoading(false)
-            err ? console.log("Something went wrong") : ""
+            if (err) {
+                console.log("Something went wrong");
+            }
         }
     }, [searchParams])
 
