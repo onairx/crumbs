@@ -45,14 +45,12 @@ export default function Page() {
                 const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/recommendations?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
                 const data = await res.json()
                 setSimilarMovies(data.results)
-
+                if (data.results.length === 0) {
+                    const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/similar?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                    const data = await res.json()
+                    setSimilarMovies(data.results)
+                }
             }
-            const fetchVideo = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/season/${selectedMovie?.number_of_seasons}/videos?api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
-                const data = await res.json()
-                console.log(data);
-            }
-            fetchVideo()
             fetchSimilar()
             fetchMovie()
         } catch (error) {
