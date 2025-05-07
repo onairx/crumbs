@@ -7,6 +7,7 @@ interface TrendingItem {
     poster_path: string;
     backdrop_path?: string;
     media_type?: string;
+    vote_average: number;
 }
 
 export default function Trending() {
@@ -38,10 +39,7 @@ export default function Trending() {
         return (
             <SearchList
                 key={item.id}
-                item={{
-                    ...item,
-                    vote_average: 0
-                }}
+                item={item}
                 theStyle={theStyle}
             />
         )
