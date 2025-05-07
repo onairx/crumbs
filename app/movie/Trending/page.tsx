@@ -20,7 +20,7 @@ export default function Trending() {
             }
             fetchTrending()
         } catch (error) {
-            console.log(error)
+
         }
     })
 

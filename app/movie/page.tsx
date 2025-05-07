@@ -29,7 +29,7 @@ function ResultPageContent() {
         try {
             async function fetchData() {
                 const res = await fetch(`https://api.themoviedb.org/3/search/multi?page=1&query=${searchParams}&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
-                const data = await res.json()
+                const data = await res?.json()
                 if (data.results.length > 0) {
                     setTheData(data.results)
                 } else if (data.results.length === 1) {
@@ -41,7 +41,6 @@ function ResultPageContent() {
             }
             fetchData()
         } catch (err) {
-            console.log(err)
             setTheData(null)
             setLoading(false)
         }

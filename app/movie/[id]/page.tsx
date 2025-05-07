@@ -46,18 +46,15 @@ export default function Page() {
                 const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/similar?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
                 const data = await res.json()
                 setSimilarMovies(data.results)
+
             }
             fetchSimilar()
             fetchMovie()
         } catch (error) {
-            console.log(error)
+
         }
 
     }, [paramsId.id, searchParams])
-
-    // React.useEffect(() => {
-    //     console.log(similarMovies)
-    // }, [selectedMovie])
 
     const similarMoviesCard = similarMovies && similarMovies.map((item: Movie) => {
         const theStyle = {
@@ -93,7 +90,7 @@ export default function Page() {
                     <div className="flex w-full h-full flex-col 
                         md:[mask-image:linear-gradient(to_bottom,transparent,#0a0a0a_15%,#0a0a0a_100%,transparent)]">
                         <div className="w-full lg:h-[40%] md:h-[30%] h-[20%] flex justify-start items-center mt-16" style={theStyle || undefined}>
-                            <div className="w-[76%] md:w-[50%] h-full flex justify-center items-center
+                            <div className="w-[76%] md:w-[50.1%] h-full flex justify-center items-center border-r border-[#2D2D2D]
                                 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0ac2] to-[#0a0a0a5a] backdrop-blur-xl">
                                 <img
                                     src={`https://image.tmdb.org/t/p/w500/${selectedMovie?.poster_path || selectedMovie?.backdrop_path}`}
