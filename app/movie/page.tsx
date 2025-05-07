@@ -33,7 +33,7 @@ function ResultPageContent() {
                 if (data.results.length > 0) {
                     setTheData(data.results)
                 } else if (data.results.length === 1) {
-                    setTheData(data.results[0])
+                    setTheData([data.results[0]])
                 } else {
                     setTheData(null)
                 }
