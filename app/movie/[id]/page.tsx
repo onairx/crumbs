@@ -51,7 +51,7 @@ export default function Page() {
             fetchSimilar()
             fetchMovie()
         } catch (error) {
-
+            error ? "Something went wrong" : ""
         }
 
     }, [paramsId.id, searchParams])
