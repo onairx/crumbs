@@ -90,7 +90,7 @@ export default function Page() {
                     <div className="flex w-full h-full flex-col 
                         md:[mask-image:linear-gradient(to_bottom,transparent,#0a0a0a_15%,#0a0a0a_100%,transparent)]">
                         <div className="w-full lg:h-[40%] md:h-[30%] h-[20%] flex justify-start items-center mt-16" style={theStyle || undefined}>
-                            <div className="w-[76%] md:w-[50.1%] h-full flex justify-center items-center border-r border-[#2D2D2D]
+                            <div className="w-[76%] md:w-[50.1%] h-full flex justify-center items-center 
                                 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0ac2] to-[#0a0a0a5a] backdrop-blur-xl">
                                 <img
                                     src={`https://image.tmdb.org/t/p/w500/${selectedMovie?.poster_path || selectedMovie?.backdrop_path}`}
