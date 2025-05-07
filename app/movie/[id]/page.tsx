@@ -42,11 +42,17 @@ export default function Page() {
                 setSelectedMovie(data)
             }
             const fetchSimilar = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/similar?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/recommendations?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
                 const data = await res.json()
                 setSimilarMovies(data.results)
 
             }
+            const fetchVideo = async () => {
+                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/season/${selectedMovie?.number_of_seasons}/videos?api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const data = await res.json()
+                console.log(data);
+            }
+            fetchVideo()
             fetchSimilar()
             fetchMovie()
         } catch (error) {
@@ -230,7 +236,7 @@ export default function Page() {
                                             <h1 className="w-full h-full bg-[#E4A000] text-[#0a0a0a]
                                             flex justify-center items-center text-center align-middle font-bold"
                                             >
-                                                Similar Genres
+                                                Recomended
                                             </h1>
                                         </div>
                                         <div className="w-full h-full block md:hidden">
