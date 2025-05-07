@@ -34,7 +34,6 @@ export default function Page() {
     const paramsId = useParams()
     const [selectedMovie, setSelectedMovie] = React.useState<Movie | null>(null);
     const [similarMovies, setSimilarMovies] = React.useState<Movie[] | null>(null)
-
     React.useEffect(() => {
         try {
             const fetchMovie = async () => {
@@ -51,7 +50,7 @@ export default function Page() {
             fetchSimilar()
             fetchMovie()
         } catch (error) {
-            error ? "Something went wrong" : ""
+            error ? console.log("Something went wrong") : ""
         }
 
     }, [paramsId.id, searchParams])
