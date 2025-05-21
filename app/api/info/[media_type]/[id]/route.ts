@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server"
+import type { NextRequest } from "next/server"
 
-export async function GET(request: Request, { params }: { params: { media_type: string; id: string } }) {
+export async function GET(request: NextRequest) {
   const apiKey = process.env.NEXT_PUBLIC_API_TMDBE
-  const { media_type, id } = params
+  const { pathname } = request.nextUrl
+  const pathParts = pathname.split("/")
+  const media_type = pathParts[pathParts.length - 2]
+  const id = pathParts[pathParts.length - 1]
   const url = `https://api.themoviedb.org/3/${media_type}/${id}`
   try {
     const response = await fetch(url, {
