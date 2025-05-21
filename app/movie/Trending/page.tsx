@@ -25,7 +25,7 @@ export default function Trending() {
                 console.log("Something went wrong");
             }
         }
-    }, [null])
+    }, [])
 
 
 

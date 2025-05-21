@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 
-export async function GET(request: Request) {
+export async function GET() {
   const trendingAPI = process.env.NEXT_PUBLIC_API_TMDBE
   const trendingURL = `https://api.themoviedb.org/3/trending/all/week`
   try {
