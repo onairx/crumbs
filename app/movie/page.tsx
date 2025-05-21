@@ -28,20 +28,20 @@ function ResultPageContent() {
         setLoading(true)
         try {
             async function fetchData() {
-                const res = await fetch(`https://api.themoviedb.org/3/search/multi?page=1&query=${searchParams}&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const res = await fetch(`/api/multi?query=${searchParams}`)
                 const data = await res?.json()
-                if (data.results.length > 0) {
+                if (data.results && data.results.length > 0) {
                     setTheData(data.results)
-                } else if (data.results.length === 1) {
+                } else if (data.results && data.results.length === 1) {
                     setTheData([data.results[0]])
                 } else {
-                    setTheData(null)
+                    setTheData([])
                 }
                 setLoading(false)
             }
             fetchData()
         } catch (error) {
-            setTheData(null)
+            setTheData([])
             setLoading(false)
             if (error) {
                 console.log("Something went wrong");

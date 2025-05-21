@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import SearchList from '../SearchList';
 
 interface TrendingItem {
@@ -11,13 +11,13 @@ interface TrendingItem {
 }
 
 export default function Trending() {
-    const [trending, setTrending] = React.useState<TrendingItem[] | null>(null)
+    const [trending, setTrending] = useState<TrendingItem[] | null>(null)
     React.useEffect(() => {
         try {
             const fetchTrending = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const res = await fetch(`/api/trending`)
                 const data = await res.json()
-                setTrending(data.results)
+                setTrending(data)
             }
             fetchTrending()
         } catch (error) {

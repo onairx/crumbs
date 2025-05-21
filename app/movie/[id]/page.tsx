@@ -37,16 +37,16 @@ export default function Page() {
     React.useEffect(() => {
         try {
             const fetchMovie = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}?api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const res = await fetch(`/api/info/${searchParams}/${paramsId.id}`)
                 const data = await res.json()
                 setSelectedMovie(data)
             }
             const fetchSimilar = async () => {
-                const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/recommendations?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                const res = await fetch(`/api/similar/${searchParams}/${paramsId.id}`)
                 const data = await res.json()
                 setSimilarMovies(data.results)
                 if (data.results.length === 0) {
-                    const res = await fetch(`https://api.themoviedb.org/3/${searchParams}/${paramsId.id}/similar?page=1&api_key=${process.env.NEXT_PUBLIC_API_TMDB}`)
+                    const res = await fetch(`/api/similar/${searchParams}/${paramsId.id}`)
                     const data = await res.json()
                     setSimilarMovies(data.results)
                 }
