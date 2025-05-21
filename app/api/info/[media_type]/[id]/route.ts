@@ -12,7 +12,7 @@ export async function GET(request: Request, { params }: { params: { media_type: 
     })
     const data = await response.json()
     return NextResponse.json(data)
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

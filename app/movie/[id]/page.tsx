@@ -46,7 +46,7 @@ export default function Page() {
                 const data = await res.json()
                 setSimilarMovies(data.results)
                 if (data.results.length === 0) {
-                    const res = await fetch(`/api/similar/${searchParams}/${paramsId.id}`)
+                    const res = await fetch(`/api/recomended/${searchParams}/${paramsId.id}`)
                     const data = await res.json()
                     setSimilarMovies(data.results)
                 }
